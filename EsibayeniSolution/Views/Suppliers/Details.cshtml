@@ -1,0 +1,79 @@
+﻿@model EsibayeniSolution.Models.Supplier
+
+@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+<style type="text/css">
+    .dl-horizontal {
+        width: 800px;
+        height: 500px;
+        /*background-color: #008080;*/
+        background-color: #2C3E50;
+        margin: 0 auto;
+        margin-top: 40px;
+        padding-top: 10px;
+        padding-left: 50px;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        /*-o-border-radius: 15px;*/
+        -moz-border-radius: 15px;
+        color: white;
+        font-weight: bold;
+    }
+</style>
+
+<div class="box">
+    <h2 class="title text-center">Supplier Details</h2>
+</div>
+<h3> @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName) </h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobileNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobileNumber)
+        </dd>
+        <br />
+        <br />
+        <p>
+            <a class="btn btn-warning" href="/Suppliers/Edit/@Model.ID">Update<span class="glyphicon glyphicon-edit"></span></a>
+            @*@Html.ActionLink("Back to List", "Index")*@
+        </p>
+
+    </dl>
+</div>

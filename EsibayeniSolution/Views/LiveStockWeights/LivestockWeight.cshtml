@@ -1,0 +1,41 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.LiveStockWeight>
+
+@{
+    //ViewBag.Title = "LivestockWeight";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+<div class="box">
+    <h2 class="title text-center">Livestock Previous and New  Weights</h2>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LivesStock.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LivesStock.Code)
+            </td>
+            <td>
+                @String.Format("{0:F}", item.Weight.ToString("0.00 KG"))
+                @*@Html.DisplayFor(modelItem => item.Weight)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+        </tr>
+
+    }
+</table>

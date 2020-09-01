@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Add Role";
+     Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+
+@Html.Raw(TempData["Message"])
+@using (Html.BeginForm("NewRole", "Admin", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-6">
+            <label class="col-md-4 control-label">Role Name</label>
+            <input type="text" class="form-control" name="RoleName" />
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary" type="submit">Add</button>
+        </div>
+    </div>
+    <br />
+    <div style="text-decoration:none" class="btn btn-success btn-sm">
+        @Html.ActionLink("Back", "Index")
+    </div>
+
+}
+

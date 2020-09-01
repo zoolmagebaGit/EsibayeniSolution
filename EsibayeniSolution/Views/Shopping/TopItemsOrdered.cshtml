@@ -1,0 +1,146 @@
+﻿
+
+@model EsibayeniSolution.Models.LivesStock
+
+@{
+    ViewBag.Title = "Add New LiveStock";
+}
+
+<h2 class="title text-center">@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Create", controllerName: "LivesStocks", routeValues: null, method: FormMethod.Post, htmlAttributes: new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-6">
+            <table>
+                <tr>
+                    <th width="80px">@Html.LabelFor(model => model.Code)</th>
+                    <td>
+                        @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control", @placeholder = "Code" } })
+                        @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(model => model.CategoryId)</th>
+                    <td>
+                        @Html.DropDownList("CategoryId", null, "--- Please Select ---", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                @*<tr>
+                    <th> @Html.LabelFor(model => model.SupplierId, "SupplierId", htmlAttributes: new { @class = "control-label col-md-2" })</th>
+                    <td>
+                        @Html.DropDownList("SupplierId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+                    </td>
+                </tr>*@
+                @*<tr>
+                    <th>@Html.LabelFor(model => model.Age)</th>
+                    <td>
+                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", @placeholder = "Description" } })
+                        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                    </td>
+                </tr>*@
+                <tr>
+                    <th>@Html.LabelFor(model => model.Weight)</th>
+                    <td>
+                        @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control", @placeholder = "Size" } })
+                        @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                @*<tr>
+                    <th>@Html.LabelFor(model => model.CostPrice)</th>
+                    <td>
+                        @Html.EditorFor(model => model.CostPrice, new { htmlAttributes = new { @class = "form-control", @placeholder = "Qty in Stock" } })
+                        @Html.ValidationMessageFor(model => model.CostPrice, "", new { @class = "text-danger" })
+                    </td>
+                </tr>*@
+                @*<tr>
+                    <th>@Html.LabelFor(model => model.ReOrderLevel)</th>
+                    <td>
+                        @Html.EditorFor(model => model.ReOrderLevel, new { htmlAttributes = new { @class = "form-control", @placeholder = "Re order level" } })
+                        @Html.ValidationMessageFor(model => model.ReOrderLevel, "", new { @class = "text-danger" })
+                    </td>
+                </tr>*@
+                @*<tr>
+                    <th>@Html.LabelFor(model => model.SafetyStockLevel)</th>
+                    <td>
+                        @Html.EditorFor(model => model.SafetyStockLevel, new { htmlAttributes = new { @class = "form-control", @placeholder = "Safety Stock level" } })
+                        @Html.ValidationMessageFor(model => model.SafetyStockLevel, "", new { @class = "text-danger" })
+                    </td>
+                </tr>*@
+
+                <tr>
+                    <th>@Html.LabelFor(model => model.CostPrice)</th>
+                    <td width="180px">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <b>R</b>
+                            </div>
+                            @Html.EditorFor(model => model.CostPrice, new { htmlAttributes = new { @class = "form-control", @placeholder = "0.00" } })
+                            @*<div class="input-group-addon">
+                                    <b>.00</b>
+                                </div>*@
+                            @Html.ValidationMessageFor(model => model.CostPrice, "", new { @class = "text-danger" })
+                        </div>
+
+                    </td>
+                </tr>
+                @*<tr>
+                    <th>@Html.LabelFor(model => model.MarkupPercentage)</th>
+                    <td>
+                        @Html.EditorFor(model => model.MarkupPercentage, new { htmlAttributes = new { @class = "form-control", @placeholder = "Markup %" } })
+                        @Html.ValidationMessageFor(model => model.MarkupPercentage, "", new { @class = "text-danger" })
+                    </td>
+                </tr>*@
+                @*<tr>
+                    <th>@Html.LabelFor(model => model.Picture)</th>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-file-picture-o"></i>
+                            </div>
+                            <input type="file" name="img_upload" accept=".jpeg,.jpg,.png"
+                                   onchange="readURL(this);" class="form-control" required="required" />
+                        </div>
+                    </td>
+                </tr>*@
+                <tr>
+                    <td>
+                        <a class="btn btn-default" href="@Url.Action("Index","LivesStocks")">
+                            <i class="fa fa-angle-left"></i>
+                            Back to List
+                        </a>
+                    </td>
+                    <td class="pull-right">
+                        <input type="submit" value="Create New" class="btn btn-success" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <img id="image_preview" src="#" alt="" @*style="border: 5px solid #ccc"*@ />
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    //image preview
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_preview')
+                    .attr('src', e.target.result)
+                    .width(300)
+                    .height(300);
+
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

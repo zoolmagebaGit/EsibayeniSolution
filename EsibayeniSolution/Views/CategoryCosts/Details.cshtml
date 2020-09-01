@@ -1,0 +1,60 @@
+﻿@model EsibayeniSolution.Models.CategoryClasses.CategoryCost
+
+@{
+    //ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+@*<h2>Details</h2>*@
+    <style type="text/css">
+        .dl-horizontal {
+            width: 700px;
+            height: 400px;
+            /*background-color: #008080;*/
+            background-color: #2C3E50;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding-top: 10px;
+            padding-left: 50px;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            /*-o-border-radius: 15px;*/
+            -moz-border-radius: 15px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+<div>
+    @*<h4>CategoryCost</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BasicCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BasicCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CostPerKG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostPerKG)
+        </dd>
+        @*<p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.C_ID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>*@
+    </dl>
+</div>
+

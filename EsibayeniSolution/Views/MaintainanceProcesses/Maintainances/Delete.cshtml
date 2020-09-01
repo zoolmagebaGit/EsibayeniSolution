@@ -1,0 +1,88 @@
+﻿@model EsibayeniSolution.Models.Maintainance
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Maintainance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LivesStock.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LivesStock.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaintainanceProcess.MainName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaintainanceProcess.MainName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCategory.ProductType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCategory.ProductType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreiviousWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreiviousWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentWeight)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

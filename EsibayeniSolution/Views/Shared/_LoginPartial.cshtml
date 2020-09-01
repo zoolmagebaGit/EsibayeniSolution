@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li>
+            @if (Request.IsAuthenticated && User.IsInRole("Customer"))
+            {
+            <li class="dropdown">
+                <a href="@Url.Action("ShoppingCart","Shopping")" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="fa fa-shopping-cart"></span> Cart (@Html.Action(actionName: "countCartItems", controllerName: "Shopping"))<span class="caret"></span></a>
+                <ul class="dropdown-menu dropdown-cart" role="menu" style="background: #000000;color:rgba(107, 37, 37, 1)">
+
+                    
+
+                    <li class="divider"></li>
+                    <li>
+                        <a class="btn btn-default" href="@Url.Action("ShoppingCart", "Shopping")">
+                            <i class="fa fa-shopping-cart"></i> View Cart
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-default" href="@Url.Action("Index","Shopping")">
+                            <i class="fa fa-list"></i> Shop More
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-default" href="@Url.Action("Order_History", "Orders")">
+                            <i class="fa fa-list"></i> My Order
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        }
+            
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a href="@Url.Action("ShoppingCart","Shopping")" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="fa fa-shopping-cart"></span> Cart (@Html.Action(actionName: "countCartItems", controllerName: "Shopping"))<span class="caret"></span></a>
+        <ul class="dropdown-menu dropdown-cart" role="menu" style="background: #000000;color:rgba(107, 37, 37, 1)">
+
+
+
+            <li class="divider"></li>
+            <li>
+                <a class="btn btn-default" href="@Url.Action("ShoppingCart", "Shopping")">
+                    <i class="fa fa-shopping-cart"></i> View Cart
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-default" href="@Url.Action("Index","Shopping")">
+                    <i class="fa fa-list"></i> Shop More
+                </a>
+            </li>
+           
+        </ul>
+    </li>
+    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+</ul>
+}

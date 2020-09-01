@@ -1,0 +1,71 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.LiveStockWeight>
+
+@{
+    //ViewBag.Title = "Livestock Weight";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box">
+    <h2 class="title text-center">All Livestock Weight</h2>
+</div>
+<table class="table table-bordered" id="mageba">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LivesStock.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LivesStock.Code)
+                </td>
+                <td>
+                    @String.Format("{0:F}", item.Weight.ToString("0.00 KG"))
+                 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @*<a class="btn btn-warning" href="/LiveStockWeights/Edit/@item.LiveStockWeightID">Edit<span class="glyphicon glyphicon-edit"></span></a>*@
+                    @*<a class="btn btn-info" href="/LiveStockWeights/Details/@item.LiveStockWeightID">Details<span class="glyphicon glyphicon-exclamation-sign"></span></a>*@
+                    <a class="btn btn-danger" href="/LiveStockWeights/Delete/@item.LiveStockWeightID">Delete<span class="glyphicon glyphicon-trash"></span></a>           
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#mageba').dataTable(
+        {
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                'pageLength', 'pdf', 'print'
+            ]
+        }
+    );
+    $('#mageba')
+        .removeClass('display')
+        .addClass('table table-striped table-hover');
+</script>

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.LivesStock>
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/LiveStockLayout.cshtml";
+}
+
+<h2>Customer</h2>
+<head>
+    <link href="~/Scripts/LandingStyle.css" rel="stylesheet" />
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+</head>
+
+    @if (!Model.Any())
+    {
+            <div class="alert alert-warning">
+                There is currently no LiveStock in our database
+                <p>
+                    We do not have available products
+                </p>
+            </div>
+    }
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 my-3">
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button class="btn btn-info" id="list">
+                        List View
+                    </button>
+                    <button class="btn btn-danger" id="grid">
+                        Grid View
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="products" class="row view-group">
+        @foreach (var item in Model)
+        {
+            <div class="item col-xs-4 col-lg-3">
+                <div class="thumbnail card">
+                    <div class="img-event">
+                        @if (item.Picture != null)
+                        {
+                            var base64 = Convert.ToBase64String(inArray: item.Picture);
+                            var imgSrc = string.Format(format: "data:image/gif;base64,{0}", arg0: base64);
+                            <img class="group list-group-image img-fluid" src="@imgSrc" width="300" height="200" />
+                        }
+                        @*<img class="group list-group-image img-fluid" src="http://placehold.it/400x250/000/fff" alt="" />*@
+                    </div>
+                    <div class="caption card-body">
+                        <h4 class="group card-title inner list-group-item-heading">
+                            @Html.DisplayFor(modelItem => item.Category.CategoryType)|    @Html.DisplayFor(modelItem => item.Sex)
+                        </h4>
+                        <p class="group inner list-group-item-text">
+                            <div>
+                                Code: @Html.DisplayFor(modelItem => item.Code)
+                            </div>
+                            <div>
+                                Weight: @String.Format("{0:F}", item.Weight.ToString("0.00 KG"))
+                            </div>
+                            <div>
+                                DOB:   @Html.DisplayFor(modelItem => item.DateOfBirth)
+                            </div>
+
+                        </p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead">
+                                    Price: @String.Format("{0:F}", item.SellingPrice.ToString("R0.00"))
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 ">
+                                @*<a class="btn btn-info">Details<span class="glyphicon glyphicon-exclamation-sign"></span></a>*@
+
+                                @if (item.addedtocart)
+                                {
+                                    <a href="@Url.Action(actionName: "add_to_cart", controllerName: "Shopping", routeValues: new {id = item.LivestockID})" class="btn disabled btn-danger"><i class="fa fa-shopping-cart disabled"></i> Out of stock</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action(actionName: "add_to_cart", controllerName: "Shopping", routeValues: new {id = item.LivestockID})" class="btn btn-success"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><p class="col-lg-1"></p>
+        }
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#list').click(function (event) { event.preventDefault(); $('#products .item').addClass('list-group-item'); });
+        $('#grid').click(function (event) { event.preventDefault(); $('#products .item').removeClass('list-group-item'); $('#products .item').addClass('grid-group-item'); });
+    });
+</script>

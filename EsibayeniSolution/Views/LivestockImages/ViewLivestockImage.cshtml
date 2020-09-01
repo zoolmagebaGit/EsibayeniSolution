@@ -1,0 +1,61 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.LivestockImagesVM>
+
+@{
+    ViewBag.Title = "Livestock Image";
+      Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+    @*<style type="text/css">
+        .table {
+            width: 800px;
+            height: 500px;
+            /*background-color: #008080;*/
+            background-color: #2C3E50;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding-top: 10px;
+            padding-left: 50px;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            /*-o-border-radius: 15px;*/
+            -moz-border-radius: 15px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>*@
+@*<h2>Livestock Image</h2>*@
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LivestockCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("Download","LivestockImages",new { id=item.ImageId})">@Html.DisplayFor(modelItem => item.ImageId)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LivestockCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadDate)
+        </td>
+@if (Request.IsAuthenticated && !User.IsInRole("") && !User.IsInRole("Customer"))
+{
+    <td>
+        @Html.ActionLink("Delete", "Delete", new { id = item.ImageId })
+    </td>
+}
+    
+    </tr>
+}
+
+</table>

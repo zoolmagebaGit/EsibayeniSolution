@@ -1,0 +1,240 @@
+﻿@*
+    This partial controls the left menu of the AdminLTE dashboard and is called automatically by _AdminLteLayout
+       This is where you can add, modify, or remove navigation options in your app
+       TODO: This preserves the links as-is for the demo, which lead to broken pages!
+       It's up to you to make sure these links either get deleted or lead somewhere REAL!
+*@
+
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.3/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.css" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-2.2.3/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        @*<div class="user-panel">
+                <div class="pull-left image">
+                    <img src="/Content/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                </div>
+                <div class="pull-left info">
+                    <p>Alexander Pierce</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>*@
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." />
+                <span class="input-group-btn">
+                    <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+        @*<style>
+                body {
+                    background-image: url("../../Images/mkt-news.jpg");
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+            </style>*@
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu">
+        @*<li class="header">Admin Menu Parnel</li>
+        <li class="active treeview">
+            <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+            </a>*@
+        @*<ul class="treeview-menu">
+            <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+            <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+        </ul>*@
+
+        @if (Request.IsAuthenticated && User.IsInRole("Stock Controller"))
+        {
+            <li><a href="@Url.Action("Index", "Suppliers")"><i class="fa fa-truck"></i> Suppliers </a></li>
+            <li><a href="@Url.Action("Index", "Categories")"><i class="fa fa-folder"></i> Categories </a></li>
+            <li><a href="@Url.Action("Index", "CategoryCosts")"><i class="fa fa-plus"></i> Category Cost </a></li>
+         
+            <li><a href="@Url.Action("Index", "Batches")"><i class="fa fa-plus"></i> Batch </a></li>
+
+        }
+
+
+        <li><a href="@Url.Action("Index", "LivesStocks")"><i class="fa fa-child"></i> livestocks </a></li>
+
+        @if (Request.IsAuthenticated && User.IsInRole("Groomer"))
+        {
+     
+            <li><a href="@Url.Action("Index", "LiveStockWeights")"><i class="fa fa-stopwatch"></i> LiveStock Weights </a></li>
+        }
+
+
+
+        @*<li class="treeview">
+            <a href="#">
+                <i class="fa fa-male"></i>
+                <span>Employees</span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="@Url.Action("Index", "Maintainances")"><i class="fa fa-circle-o"></i> Stock Controllers</a></li>
+                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Groomers</a></li>
+                <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Sales Consultants</a></li>
+                @*<li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></a></li>
+        </ul>
+        </li>*@
+        @if (Request.IsAuthenticated && User.IsInRole("Stock Controller"))
+        {
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Stocks</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "MaintainanceStocks")"><i class="fa fa-circle-o"></i>Maintenance Stock</a></li>
+                    <li><a href="@Url.Action("Index", "ProductCategories")"><i class="fa fa-circle-o"></i>  Product Categories</a></li>
+                    <li><a href="@Url.Action("Index", "LivestockMaintainanceStocks")"><i class="fa fa-circle-o"></i> Livestock Maintainance Stocks</a></li>
+
+
+                </ul>
+            </li>
+        }
+        @if (Request.IsAuthenticated && User.IsInRole("Groomer"))
+        {
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Maintenance</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "Maintainances1")"><i class="fa fa-circle-o"></i>Maintenance</a></li>
+                    <li><a href="@Url.Action("Index", "MaintainanceProcesses")"><i class="fa fa-circle-o"></i> Miantenance Process</a></li>
+
+                </ul>
+            </li>
+        }
+
+
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Admin Menu</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("AssignRole", "Admin")"><i class="fa fa-plus-square-o"></i>Assign Role</a></li>
+                    <li><a href="@Url.Action("CreateRole", "Admin")"><i class="fa fa-circle-o"></i>Create Role</a></li>
+                    <li><a href="@Url.Action("CreateUser", "Admin")"><i class="fa fa-circle-o"></i>Create User</a></li>
+                    <li><a href="@Url.Action("Index", "RolesAdmin")"><i class="fa fa-circle-o"></i>Roles</a></li>
+                    <li><a href="@Url.Action("Index", "UsersAdmin")"><i class="fa fa-circle-o"></i>Users</a></li>
+
+                </ul>
+            </li>
+          
+        }
+        @if (Request.IsAuthenticated && User.IsInRole("Sales Consultant"))
+        {
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Oders</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "Customers")"><i class="fa fa-circle-o"></i>Customers</a></li>
+                    <li><a href="@Url.Action("Customer_Orders", "Orders")"><i class="fa fa-circle-o"></i>Orders</a></li>
+                    <li><a href="@Url.Action("Index", "Analytics")"><i class="fa fa-circle-o"></i>Analytics</a></li>
+
+                </ul>
+            </li>
+        }
+
+        @*<li class="treeview">
+                <a href="#">
+                    <i class="fa fa-edit"></i> <span>Forms</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
+                    <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
+                    <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-table"></i> <span>Tables</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
+                    <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="pages/calendar.html">
+                    <i class="fa fa-calendar"></i> <span>Calendar</span>
+                    <small class="label pull-right bg-red">3</small>
+                </a>
+            </li>
+            <li>
+                <a href="pages/mailbox/mailbox.html">
+                    <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                    <small class="label pull-right bg-yellow">12</small>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>Examples</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
+                    <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
+                    <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
+                    <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+                    <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+                    <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+                    <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-share"></i> <span>Multilevel</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                            <li>
+                                <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                </ul>
+            </li>
+            <li><a href="documentation/index.html"><i class="fa fa-book"></i> Documentation</a></li>
+            <li class="header">LABELS</li>
+            <li><a href="#"><i class="fa fa-circle-o text-danger"></i> Important</a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-warning"></i> Warning</a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-info"></i> Information</a></li>
+        </ul>*@
+</section>
+    <!-- /.sidebar -->
+</aside>

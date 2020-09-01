@@ -1,0 +1,44 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.LivestockMaintainanceStock>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box">
+    <h2 class="title text-center">All Maintainance Stock</h2>
+</div>
+
+<p>
+    <a class="btn btn-primary" href="/LivestockMaintainanceStocks/Create">Create New<span class="glyphicon glyphicon-plus"></span></a>
+   
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaintainaceStock.ProductName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaintainaceStock.ProductName)
+            </td>
+            <td>
+                <a class="btn btn-warning" href="/LivestockMaintainanceStocks/Edit/@item.LivestockMaintainanceStockID">Edit<span class="glyphicon glyphicon-edit"></span></a>
+                <a class="btn btn-info" href="/LivestockMaintainanceStocks/Details/@item.LivestockMaintainanceStockID">Details<span class="glyphicon glyphicon-exclamation-sign"></span></a>
+                <a class="btn btn-danger" href="/LivestockMaintainanceStocks/Delete/@item.LivestockMaintainanceStockID">Delete<span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+        </tr>
+    }
+
+</table>

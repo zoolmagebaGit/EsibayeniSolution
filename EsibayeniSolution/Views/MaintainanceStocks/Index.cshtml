@@ -1,0 +1,90 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.MaintainanceStock>
+
+@{
+    //ViewBag.Title = "Maintainance Stocks";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+
+    <div class="box">
+        <h2 class="title text-center">All Maintainance Stock</h2>
+    </div>
+<p>
+    <a class="btn btn-primary" href="/MaintainanceStocks/Create">Add Maintainance Stock<span class="glyphicon glyphicon-plus"></span></a>
+    
+</p>
+<table class="table table-bordered" id="mageba">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductCategory.ProductType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateOfEntry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Expirydate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StockPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductCategory.ProductType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateOfEntry)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Expirydate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StockPrice)
+                </td>
+                <td>
+
+                    <a class="btn btn-warning" href="/MaintainanceStocks/Edit/@item.ProductID">Edit<span class="glyphicon glyphicon-edit"></span></a>
+                    <a class="btn btn-info" href="/MaintainanceStocks/Details/@item.ProductID">Details<span class="glyphicon glyphicon-exclamation-sign"></span></a>
+                    <a class="btn btn-danger" href="/MaintainanceStocks/Delete/@item.ProductID">Delete<span class="glyphicon glyphicon-trash"></span></a>
+
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })*@
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+    </table>
+<script type="text/javascript">
+    $('#mageba').dataTable(
+          {
+              dom: 'Bfrtip',
+              lengthMenu: [
+                  [ 10, 25, 50, -1 ],
+                  [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+              ],
+              buttons: [
+                  'pageLength', 'pdf', 'print'
+              ]
+          }
+        );
+    $('#mageba')
+       .removeClass('display')
+       .addClass('table table-striped table-hover');
+</script>

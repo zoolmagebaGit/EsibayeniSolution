@@ -1,0 +1,91 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.Maintainance>
+
+@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+    //ViewBag.Title = "Index";
+}
+
+@*<h2>Index</h2>*@
+    <div class="box">
+            <h2 class="title text-center">All Maintainances </h2>
+    </div>
+   
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+@*<h2 class="title text-center">@ViewBag.Title</h2>*@
+<table class="table  table-bordered table-hover table-striped" id="applicant">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LivesStock.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaintainanceProcess.MainName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaitainanceStock.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ProductCategory)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LivesStock.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaintainanceProcess.MainName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaitainanceStock.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ProductCategory)
+                    </td>*@
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.MProcID }) |*@
+                    <a class="btn btn-info" href="/Maintainances1/Details/@item.MProcID">Details<span class="glyphicon glyphicon-exclamation-sign"></span></a>
+                    @*@Html.ActionLink("Details", "Details", new { id = item.MProcID }) |*@
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.MProcID })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<script type="text/javascript">
+    $('#applicant').dataTable(
+        {
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                'pageLength', 'pdf', 'print'
+            ]
+        }
+    );
+    $('#applicant')
+        .removeClass('display')
+        .addClass('table table-bordered');
+</script>

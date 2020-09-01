@@ -1,0 +1,59 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.Category>
+
+@{
+    //ViewBag.Title = "Livestock Categories";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box">
+    <h2 class="title text-center">All Categories</h2>
+</div>
+
+<p>
+    <a class="btn btn-primary" href="/Categories/Create">Add Category<span class="glyphicon glyphicon-plus"></span></a>
+</p>
+@Html.Raw(TempData["Message"])
+<table class="table  table-bordered table-hover table-striped" id="applicant">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryType)
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="/Categories/Delete/@item.CategoryId">Delete<span class="glyphicon glyphicon-trash"></span></a>
+           
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#applicant').dataTable(
+        {
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                'pageLength', 'pdf', 'print'
+            ]
+        }
+    );
+    $('#applicant')
+        .removeClass('display')
+        .addClass('table table-bordered');
+</script>

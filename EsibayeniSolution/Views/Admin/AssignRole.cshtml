@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Assign Role";
+     Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+
+@Html.Raw(TempData["Message"])
+@using (Html.BeginForm("AssignRole", "Admin", FormMethod.Post))
+{
+    <div class="row">
+
+
+
+
+        <div class="col-md-10">
+            <label class="col-md-4 control-label">Select User</label>
+            @Html.DropDownList("txtUserid", (IEnumerable<SelectListItem>)ViewBag.Users, "Select..")
+        </div>
+        <div class="col-md-10">
+            <label class="col-md-4 control-label">Select Role</label>
+            @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select..")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-primary" type="submit">Assign</button>
+        </div>
+    </div>
+    <br />
+    <div style="text-decoration:none" class="btn btn-success btn-sm">
+        @Html.ActionLink("Back", "Index")
+    </div>
+}
+
+

@@ -1,0 +1,52 @@
+﻿@model EsibayeniSolution.Models.MaintainanceProcess
+
+@{
+    //ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+    <style type="text/css">
+        .dl-horizontal {
+            width: 800px;
+            height: 500px;
+            /*background-color: #008080;*/
+            background-color: #2C3E50;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding-top: 10px;
+            padding-left: 50px;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            /*-o-border-radius: 15px;*/
+            -moz-border-radius: 15px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+@*<h2>Delete</h2>*@
+
+<h3>Are you sure you want to delete this process: @Html.DisplayFor(model => model.MainName) ?</h3>
+<div>
+    @*<h4>MaintainanceProcess</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MainName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainName)
+        </dd>
+        <br />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+              @*  @Html.ActionLink("Back to List", "Index")*@
+            </div>
+        }
+    </dl>
+
+  
+</div>

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.Batch>
+
+@{
+    //ViewBag.Title = "Batches";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+    <div class="box">
+        <h2 class="title text-center">All Batches</h2>
+    </div>
+
+<p>
+    <a class="btn btn-primary" href="/Batches/Create">Add Batch<span class="glyphicon glyphicon-plus"></span></a>
+
+</p>
+<table class="table table-bordered" id="mageba">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryType)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchCost)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supplier.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BatchCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @String.Format("{0:F}", item.BatchCost.ToString("R0.00"))
+                
+                </td>
+                <td>
+                    @*<a class="btn btn-warning" href="/Flowers/Edit/@item.BatchID">Edit<span class="glyphicon glyphicon-edit"></span></a>*@
+                    <a class="btn btn-info" href="/Batches/Details/@item.BatchID">Details<span class="glyphicon glyphicon-exclamation-sign"></span></a>
+                    @* <a class="btn btn-danger" href="/Batches/Delete/@item.BatchID">Delete<span class="glyphicon glyphicon-trash"></span></a>*@
+             
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+    </table>
+<script type="text/javascript">
+    $('#mageba').dataTable(
+          {
+              dom: 'Bfrtip',
+              lengthMenu: [
+                  [ 10, 25, 50, -1 ],
+                  [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+              ],
+              buttons: [
+                  'pageLength', 'pdf', 'print'
+              ]
+          }
+        );
+    $('#mageba')
+       .removeClass('display')
+       .addClass('table table-striped table-hover');
+</script>

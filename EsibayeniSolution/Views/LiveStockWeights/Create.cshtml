@@ -1,0 +1,73 @@
+﻿@model EsibayeniSolution.Models.LiveStockWeight
+
+@{
+    //ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+    <style type="text/css">
+        .form-horizontal {
+            width: 800px;
+            height: 500px;
+            /*background-color: #008080;*/
+            background-color: #2C3E50;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding-top: 10px;
+            padding-left: 50px;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="box">
+        <h2 class="title text-center"> LiveStock Weight </h2>
+    </div>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    @*<h4>LiveStock Weight</h4>*@
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.LivestockID, "LivestockID", htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor( model=> model.LivestockID, new { htmlAttributes = new { @class = "form-control" ,@Placeholder="Livestock ID", @readonly = "readonly"} })
+            @Html.ValidationMessageFor(model => model.LivestockID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" ,@Placeholder="Weight"} })
+            @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control",@Placeholder="" } })
+            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+
+    @*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+</div>
+}
+
+

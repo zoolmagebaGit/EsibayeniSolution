@@ -1,0 +1,84 @@
+﻿@model EsibayeniSolution.Models.Batch
+
+@{
+    ViewBag.Title = "Batch Details";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<style type="text/css">
+    .dl-horizontal {
+        width: 700px;
+        height: 400px;
+        /*background-color: #008080;*/
+         background-color:#2C3E50;
+        margin: 0 auto;
+        margin-top: 40px;
+        padding-top: 10px;
+        padding-left: 50px;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        /*-o-border-radius: 15px;*/
+        -moz-border-radius: 15px;
+        color: white;
+        font-weight: bold;
+        
+    }
+</style>
+
+<div>
+ 
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BatchCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BatchCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BatchCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BatchCost)
+        </dd>
+        @*<p>
+            @Html.ActionLink("Back", "Index")
+        </p>*@
+
+    </dl>
+</div>

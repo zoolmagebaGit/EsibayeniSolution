@@ -1,0 +1,55 @@
+﻿@model EsibayeniSolution.Models.ProductCategory
+
+@{
+    //ViewBag.Title = "Product Category";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<style type="text/css">
+    .form-horizontal {
+        width: 800px;
+        height: 500px;
+        /*background-color: #008080;*/
+           background-color:#2C3E50;
+        margin: 0 auto;
+        margin-top: 40px;
+        padding-top: 10px;
+        padding-left: 50px;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        /*-o-border-radius: 15px;*/
+        -moz-border-radius: 15px;
+        color: white;
+        font-weight: bold;
+    }
+</style>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Product Category</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.ProductType, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProductType, new { htmlAttributes = new { @class = "form-control",@Placeholder="ProductType" } })
+            @Html.ValidationMessageFor(model => model.ProductType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

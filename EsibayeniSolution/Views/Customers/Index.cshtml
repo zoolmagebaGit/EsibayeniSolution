@@ -1,0 +1,94 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<br />
+<br />
+<hr />
+
+
+@*<p>
+    <a class="btn btn-primary" href="/Customers/Create">Add Customer<span class="glyphicon glyphicon-plus"></span></a>
+
+</p>*@
+<table class="tabletable-bordered table-hover table-striped" id="applicant">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostalCode)
+            </td>
+            <td>
+
+                @*<a class="btn btn-warning" href="/Customers/Edit/@item.Email">Edit<span class="glyphicon glyphicon-edit"></span></a>
+                    <a class="btn btn-info" href="/Customers/Details/@item.Email">Details<span class="glyphicon glyphicon-exclamation-sign"></span></a>
+                     <a class="btn btn-danger" href="/Customers/Delete/@item.Email">Delete<span class="glyphicon glyphicon-trash"></span></a>*@
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Email }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Email }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Email })*@
+            </td>
+        </tr>
+    }
+</tbody>
+</table>
+<script type="text/javascript">
+    $('#applicant').dataTable(
+          {
+              dom: 'Bfrtip',
+              lengthMenu: [
+                  [ 10, 25, 50, -1 ],
+                  [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+              ],
+              buttons: [
+                  'pageLength', 'pdf', 'print'
+              ]
+          }
+        );
+    $('#applicant')
+       .removeClass('display')
+       .addClass('table table-bordered');
+</script>

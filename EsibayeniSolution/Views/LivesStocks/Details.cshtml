@@ -1,0 +1,122 @@
+﻿@model EsibayeniSolution.Models.LivesStock
+
+@{
+    //ViewBag.Title = "Livestock Details";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+    <style type="text/css">
+        .dl-horizontal {
+            width: 800px;
+            height: 500px;
+            /*background-color: #008080;*/
+            background-color: #2C3E50;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding-top: 10px;
+            padding-left: 50px;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            /*-o-border-radius: 15px;*/
+            -moz-border-radius: 15px;
+            color: white;
+            font-weight: bold;
+        }
+       
+    </style>
+    <div class="box">
+        <h2 class="title text-center">Livestock Details</h2>
+    </div>
+
+    <h4>Update @Html.DisplayFor(model => model.Code) Details</h4>
+<br />
+<hr />
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Batch.BatchCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Batch.BatchCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @String.Format("{0:F}", Model.Weight.ToString("0.00 Kg "))
+            @*@Html.DisplayFor(model => model.Weight)*@
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CostPrice)
+        </dt>
+
+        <dd>
+            @String.Format("{0:F}", Model.CostPrice.ToString("R0.00 "))
+
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.SellingPrice)
+        </dt>
+        <dd>
+            @String.Format("{0:F}", Model.SellingPrice.ToString("R0.00 "))
+
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+
+        <dd>
+            <div class="col-md-4">
+                <img src="data:image/png;base64,@Convert.ToBase64String(Model.Picture, 0, Model.Picture.Length)" style="width: 300px; height: 300px" alt="" />
+            </div>
+        </dd>
+        @if (Request.IsAuthenticated && User.IsInRole("Groomer") && !User.IsInRole("Customer"))
+        {
+            <a class="btn btn-primary" href="/LiveStocTrack/Index/@Model.LivestockID">Track Growth</a>
+            <a class="btn btn-primary" href="/Maintainances1/Create/@Model.LivestockID">Maintain</a>
+            <a class="btn btn-primary" href="/LiveStockWeights/Create/@Model.LivestockID">Add Weight</a>
+            <a class="btn btn-primary" href="/LiveStockWeights/LivestockWeight/@Model.LivestockID">Weight</a>
+        }
+        @*else if (Request.IsAuthenticated && User.IsInRole("Customer") || !Request.IsAuthenticated)
+        {
+            <a class="btn btn-success" href="/Shopping/add_to_cart/@Model.LivestockID">Add To Cart<span class="glyphicon glyphicon-shopping-cart"></span></a>
+        }*@
+
+        else if (Request.IsAuthenticated && User.IsInRole("Stock Controller"))
+        {
+            <a class="btn btn-warning" href="/LivesStocks/Edit/@Model.LivestockID">Update<span class="glyphicon glyphicon-edit"></span></a>
+        }
+
+    </dl>
+</div>
+
+
+

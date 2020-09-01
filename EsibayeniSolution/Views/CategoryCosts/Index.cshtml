@@ -1,0 +1,72 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.CategoryClasses.CategoryCost>
+
+@{
+    //ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+
+<div class="box">
+    <h2 class="title text-center">All Category Cost</h2>
+</div>
+<p>
+    <a class="btn btn-primary" href="/CategoryCosts/Create">Add Category Costs <span class="glyphicon glyphicon-plus"></span></a>
+  
+</p>
+<table class="table table-bordered table-hover table-striped" id="applicant">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostPerKG)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryType)
+                </td>
+                <td>
+                    @String.Format("{0:F}", item.BasicCost.ToString("R0.00"))                
+                </td>
+                <td>
+                    @String.Format("{0:F}", item.CostPerKG.ToString("R0.00"))              
+                </td>
+                <td>
+
+                    <a class="btn btn-warning" href="/CategoryCosts/Edit/@item.C_ID">Edit<span class="glyphicon glyphicon-edit"></span></a>
+                    <a class="btn btn-info" href="/CategoryCosts/Details/@item.C_ID">Details<span class="glyphicon glyphicon-exclamation-sign"></span></a>
+                    <a class="btn btn-danger" href="/CategoryCosts/Delete/@item.C_ID">Delete<span class="glyphicon glyphicon-trash"></span></a>
+             
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#applicant').dataTable(
+        {
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                'pageLength', 'pdf', 'print'
+            ]
+        }
+    );
+    $('#applicant')
+        .removeClass('display')
+        .addClass('table table-bordered');
+</script>

@@ -1,0 +1,102 @@
+﻿@model EsibayeniSolution.Models.Category
+
+@{
+    //ViewBag.Title = "Store";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+
+    }
+
+    <br />
+    <hr />
+    <div class="genre">
+        <h3><em>@Model.CategoryType </em> Items</h3>
+
+
+
+        @foreach (var item in Model.Items)
+        {
+
+            <a href="@Url.Action("Details", "Shopping", new { id = item.LivestockID })"></a>
+            <div class="list-item">
+                <div class="mypic">
+
+                    @*<a href="@Url.Action("Details", "Store", new { id = item.ID })"> </a>*@
+
+                    <div class="row" style="text-align: center;padding-top:5px">
+                        @if (item.Picture != null)
+                        {
+                            var base64 = Convert.ToBase64String(inArray: item.Picture);
+                            var imgSrc = string.Format(format: "data:image/gif;base64,{0}", arg0: base64);
+                            <img src="@imgSrc" width="90" height="70" />
+                        }
+                    </div>
+
+                    @*<img src="data:image/png;base64,@Convert.ToBase64String(item.Picture, 0, item.Picture.Length)
+                        " style="width: 100px; height: 100px" alt="" />*@
+
+                    <div class="add-to-cart">
+                        <span class="p-price">
+                            @String.Format("{0:F}", item.CostPrice.ToString("R0.00"))
+                        </span>
+                    </div>
+                </div>
+
+
+            </div>
+
+        }
+
+
+    </div>
+
+    <style>
+        .list-item .mypic {
+            height: 206px;
+            padding: 15px;
+            margin: 0 16px 10px 0;
+            width: calc((100% - 80px)/ 6);
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: 1px solid #e5e6e6;
+            position: relative;
+            float: left;
+            display: inline;
+        }
+
+
+
+        .list-item .add-to-cart {
+            display: inline-block;
+            vertical-align: bottom;
+            margin-top: 10px;
+        }
+
+
+            .list-item .add-to-cart a {
+                border: 1px solid #2dbb9b;
+                padding: 10px;
+                font-weight: bold;
+                font-size: .8em;
+                margin: 0;
+                cursor: pointer;
+                text-decoration: none;
+                text-transform: uppercase;
+                color: #2dbb9b;
+            }
+
+                .list-item .add-to-cart a:hover {
+                    color: #fff;
+                    background: #2dbb9b;
+                }
+
+        .list-item .p-price {
+            color: #fff;
+            background: #2dbb9b;
+            font-weight: bold;
+            font-size: .9em;
+            padding: 10px;
+        }
+    </style>
+
+

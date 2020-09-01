@@ -1,0 +1,15 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.Category>
+
+@{
+    //ViewBag.Title = "Store";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+
+}
+    <ul id="categories">
+        @foreach (var genre in Model)
+        {
+
+            <li> @Html.ActionLink(genre.CategoryType, "Browse", "Store", new { Genre = genre.CategoryType }, null)</li>
+        }
+    </ul>
+

@@ -1,0 +1,74 @@
+﻿@model EsibayeniSolution.Models.MaintainanceStock
+
+@{
+    //ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+    <style type="text/css">
+        .dl-horizontal {
+            width: 800px;
+            height: 500px;
+            /*background-color: #008080;*/
+            background-color: #2C3E50;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding-top: 10px;
+            padding-left: 50px;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            /*-o-border-radius: 15px;*/
+            -moz-border-radius: 15px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+
+<div>
+    <h4>Maintainance Stock Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCategory.ProductType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCategory.ProductType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.dateOfEntry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateOfEntry)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Expirydate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Expirydate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StockPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StockPrice)
+        </dd>
+        <br />
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+            @*@Html.ActionLink("Back to List", "Index")*@
+        </p>
+    </dl>
+</div>
+

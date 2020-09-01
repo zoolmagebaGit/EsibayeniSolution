@@ -1,0 +1,87 @@
+﻿@model EsibayeniSolution.Models.Maintainance
+
+@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+    //ViewBag.Title = "Details";
+
+}
+    <style type="text/css">
+        .dl-horizontal {
+            width: 800px;
+            height: 500px;
+            /*background-color: #008080;*/
+            background-color: #2C3E50;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding-top: 10px;
+            padding-left: 50px;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            /*-o-border-radius: 15px;*/
+            -moz-border-radius: 15px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+@*<h2>Details</h2>*@
+
+<div>
+    @*<h4>Maintainance</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LivesStock.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LivesStock.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaintainanceProcess.MainName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaintainanceProcess.MainName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaitainanceStock.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaitainanceStock.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ProductCategory)
+        </dt>*@
+
+        @*<dd>
+            @Html.DisplayFor(model => model.ProductCategory)
+        </dd>*@
+        <p>
+            @*  @Html.ActionLink("Edit", "Edit", new { id = Model.MProcID }) |*@
+
+            @*<a class="btn btn-warning" href="/Maintainances1/Edit/@Model.MProcID">Edit<span class="glyphicon glyphicon-edit"></span></a>*@
+            @*@Html.ActionLink("Back to List", "Index")*@
+        </p>
+    </dl>
+</div>
+

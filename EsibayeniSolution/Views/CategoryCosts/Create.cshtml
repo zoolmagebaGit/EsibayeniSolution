@@ -1,0 +1,69 @@
+﻿@model EsibayeniSolution.Models.CategoryClasses.CategoryCost
+
+@{
+    //ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+<style type="text/css">
+    .form-horizontal {
+        width: 700px;
+        height: 400px;
+        /*background-color: #008080;*/
+        background-color: #2C3E50;
+        margin: 0 auto;
+        margin-top: 40px;
+        padding-top: 10px;
+        padding-left: 50px;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        /*-o-border-radius: 15px;*/
+        -moz-border-radius: 15px;
+        color: white;
+        font-weight: bold;
+    }
+</style>
+@*<h2>Create</h2>*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>CategoryCost</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control", @Placeholder = "" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.BasicCost, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BasicCost, new { htmlAttributes = new { @class = "form-control", @Placeholder = "BasicCost" } })
+                @Html.ValidationMessageFor(model => model.BasicCost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.CostPerKG, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CostPerKG, new { htmlAttributes = new { @class = "form-control", @Placeholder = "CostPerKG" } })
+                @Html.ValidationMessageFor(model => model.CostPerKG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<EsibayeniSolution.Models.MaintainanceProcess>
+
+@{
+    //ViewBag.Title = "Maintainance Processes";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+    <div class="box">
+        <h2 class="title text-center">All Maintainance Processess</h2>
+    </div>
+<p>
+    <a class="btn btn-primary" href="/MaintainanceProcesses/Create">Add Maintainance Process<span class="glyphicon glyphicon-plus"></span></a>
+   
+</p>
+@Html.Raw(TempData["Message"])
+<table class="table table-bordered" id="mageba">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MainName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MainName)
+                </td>
+                <td>
+                    @*<a class="btn btn-warning" href="/MaintainanceProcesses/Edit/@item.MainPId">Edit<span class="glyphicon glyphicon-edit"></span></a>*@
+                    @*   <a class="btn btn-info" href="/MaintainanceProcesses/Details/@item.MainPId">Details<span class="glyphicon glyphicon-exclamation-sign"></span></a>*@
+                    <a class="btn btn-danger" href="/MaintainanceProcesses/Delete/@item.MainPId">Delete<span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#mageba').dataTable(
+          {
+              dom: 'Bfrtip',
+              lengthMenu: [
+                  [ 10, 25, 50, -1 ],
+                  [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+              ],
+              buttons: [
+                  'pageLength', 'pdf', 'print'
+              ]
+          }
+        );
+    $('#mageba')
+       .removeClass('display')
+       .addClass('table table-striped table-hover');
+</script>

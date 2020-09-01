@@ -1,0 +1,63 @@
+﻿@model EsibayeniSolution.Models.LiveStockWeight
+
+@{
+    //ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+    <style type="text/css">
+        .dl-horizontal{
+            width: 800px;
+            height: 500px;
+            /*background-color: #008080;*/
+            background-color: #2C3E50;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding-top: 10px;
+            padding-left: 50px;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            /*-o-border-radius: 15px;*/
+            -moz-border-radius: 15px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+@*<h2>Details</h2>*@
+
+<div>
+    
+   
+    <dl class="dl-horizontal">
+        <h4>LiveStock @Html.DisplayFor(model => model.LivesStock.Code) Weight Details</h4>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.LivesStock.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LivesStock.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <br />
+        <p>
+            <a class="btn btn-warning" href="/LiveStockWeights/Edit/@Model.LivestockID">Update<span class="glyphicon glyphicon-edit"></span></a>
+            @*  @Html.ActionLink("Back to List", "Index")*@
+        </p>
+    </dl>
+</div>
+
